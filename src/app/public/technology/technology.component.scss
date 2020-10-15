@@ -1,0 +1,57 @@
+@import "~@angular/material/theming";
+@import "~sass/dark-theme";
+
+.wrapper {
+    .header {
+        min-height: 400px;
+        position: relative;
+        height: 100vh;
+        background-color: map-get($primary-drk, darker);
+        
+        app-particle {
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .stage {
+            margin: 0 40px;
+            padding: 20px;
+            z-index: 100;
+            background-color: map-get($primary-drk, default);
+            max-width: 450px; // font-size: 2.5em;
+            @include mat-elevation(24);
+            color: white;
+            
+            .mat-display-1 {                
+                font-weight: 100;
+                text-align: center;
+                margin: 0;
+            }
+        }
+    }
+
+    .services {
+        .inner {
+            padding: 60px 20px;
+            max-width: 1300px;
+
+            .service {
+                padding: 20px;
+
+                .title {
+                    // text-align: center;
+                    text-align: left;
+                }
+
+                .desc {
+                    text-align: justify;
+
+                    // text-align: center;
+               
+                }
+            }
+        }
+    }
+}

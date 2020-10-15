@@ -1,0 +1,192 @@
+// ================== Angular Material Typography Settings ==================
+// @import '~@angular/material/theming';
+
+// body {
+//     // for html elements without a material class defining typography
+//     // font-family: 'Roboto', sans-serif; // color: red;
+
+//     // use a 'base' of 10px so that 'em' is easily calculated
+//     font-size: 10px;
+//     line-height: 10px;
+// }
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+// converts font sizes to 'em' instead of 'px'
+// $custom-typography: mat-typography-config(
+//     $font-family: "Roboto,  sans-serif", 
+//     $display-4:     mat-typography-level(11.2em, 1em, 300),
+//     $display-3:     mat-typography-level(5.6em, 1em, 400),
+//     $display-2:     mat-typography-level(4.5em, 1.066666667em, 400),
+//     $display-1:     mat-typography-level(3.4em, 1.142857143em, 400),
+//     $headline:      mat-typography-level(2.4em, 1.333333333em, 400),
+//     $title:         mat-typography-level(2em, 1.6em, 500),
+//     $subheading-2:  mat-typography-level(1.6em, 1.75em, 400),
+//     $subheading-1:  mat-typography-level(1.5em, 1.6em, 400),
+//     $body-2:        mat-typography-level(1.4em, 1.714285714em, 500),
+//     $body-1:        mat-typography-level(1.4em, 1.428571429em, 400),
+//     $caption:       mat-typography-level(1.2em, 1.666666667em, 400)
+// );
+
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+// @include mat-base-typography($custom-typography);
+
+// Override typography for a specific Angular Material components.
+// @include mat-checkbox-typography($custom-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+// @include angular-material-typography($custom-typography);
+
+// Override the typography in the core CSS.
+// @include mat-core($custom-typography);
+
+// // Material 'mat-typography-level' function
+// // Represents a typography level from the Material design spec.
+// @function mat-typography-level(
+//   $font-size,
+//   $line-height: $font-size,
+//   $font-weight: 400,
+//   $font-family: null) {
+
+//   @return (
+//     font-size: $font-size,
+//     line-height: $line-height,
+//     font-weight: $font-weight,
+//     font-family: $font-family
+//   );
+// }
+
+// Material Defaults:
+// $font-family:   'Roboto, "Helvetica Neue", sans-serif',
+// $display-4:     mat-typography-level(112px, 112px, 300),
+// $display-3:     mat-typography-level(56px, 56px, 400),
+// $display-2:     mat-typography-level(45px, 48px, 400),
+// $display-1:     mat-typography-level(34px, 40px, 400),
+// $headline:      mat-typography-level(24px, 32px, 400),
+// $title:         mat-typography-level(20px, 32px, 500),
+// $subheading-2:  mat-typography-level(16px, 28px, 400),
+// $subheading-1:  mat-typography-level(15px, 24px, 400),
+// $body-2:        mat-typography-level(14px, 24px, 500),
+// $body-1:        mat-typography-level(14px, 20px, 400),
+// $caption:       mat-typography-level(12px, 20px, 400),
+// $button:        mat-typography-level(14px, 14px, 500),
+// // Line-height must be unit-less fraction of the font-size.
+// $input:         mat-typography-level(inherit, 1.125, 400)
+
+@media screen and (max-width: 959px) {
+    // screen less than md
+
+    // reduces extra large fonts size on small screens
+    // by one level for each
+    $custom-typography: mat-typography-config(
+        $display-4:     mat-typography-level(56px, 56px, 400),
+        $display-3:     mat-typography-level(45px, 48px, 400),
+        $display-2:     mat-typography-level(34px, 40px, 400)
+    );
+
+    // Override typography for all Angular Material, including mat-base-typography and all components.
+    @include angular-material-typography($custom-typography);
+
+}
+
+// ================== Typography and Text Helpers ==================
+
+// .bold {
+// 	font-weight: 700;
+// }
+.capitalize {
+    text-transform: capitalize;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+// .text-tight {
+// 	font-family: 'Roboto Condensed', sans-serif;
+// }
+.super {
+    font-size: 0.7em;
+    vertical-align: super;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+// .text-danger {
+// 	color: rgb(213, 0, 0);
+// }
+// .text-success {
+// 	color: rgb(139, 195, 74);
+// }
+
+/*For text - Use opacity instead of grey
+  Black or white text that is transparent remains legible and vibrant against background color changes. This makes it more flexible than grey text in the same contexts.*/
+
+/*Light text (#FFFFFF)
+  Primary text                        100%
+  Secondary text                      70%
+  Disabled text, hint text, and icons 50%
+  Dividers                            12%*/
+
+// .text-light {
+// 	color: rgba(255, 255, 255, 1);
+// 	&.light {
+// 		color: rgba(255, 255, 255, 0.7)
+// 	}
+// 	&.lighter {
+// 		color: rgba(255, 255, 255, 0.5)
+// 	}
+// 	&.lightest {
+// 		color: rgba(255, 255, 255, 0.12)
+// 	}
+// 	.md-button:not([disabled]):hover {
+// 		color: rgba(255, 255, 255, 0.7)
+// 	}
+// }
+
+/*Dark text (#000000)
+  Primary text                        87%
+  Secondary text                      54%
+  Disabled text, hint text, and icons 38%
+  Dividers                            12%*/
+
+// .text-dark {
+// 	color: rgba(0, 0, 0, 0.87);
+// 	&.light {
+// 		color: rgba(0, 0, 0, 0.54)
+// 	}
+// 	&.lighter {
+// 		color: rgba(0, 0, 0, 0.38)
+// 	}
+// 	&.lightest {
+// 		color: rgba(0, 0, 0, 0.12)
+// 	}
+// }
+
+/*social media colors.*/
+
+.text-twitter {
+    color: #5EA9DD;
+}
+
+.text-facebook {
+    color: #3A579D;
+}
+
+.text-google {
+    color: #D73D32;
+}

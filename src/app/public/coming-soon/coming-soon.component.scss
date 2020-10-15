@@ -1,0 +1,29 @@
+.wrapper {
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-image: url("../../../assets/backgrounds/penguin.jpg");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	height: 100vh;
+	width: 100%;
+
+	.inner {
+		padding: 10px;
+		padding-top: 40px;
+		height: 100vh;
+		width: 100%;
+		// background-color: rgba(49, 51, 68, 0.60);
+
+		.container {
+			background-color: rgba(49, 51, 68, 0.60);
+			color: #fff;
+			padding: 20px; // margin-top: 100px;
+			// width: 100%;
+			max-width: 800px; // height: 700px;
+			min-height: 460; // overflow: hidden;
+			border: solid 8px #fff; // background-color: rgba(102, 255, 0, 0.116);				
+		}
+	}
+}

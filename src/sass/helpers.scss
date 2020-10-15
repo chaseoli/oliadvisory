@@ -1,0 +1,163 @@
+@import '~sass/variables';
+
+// .transparent {
+// 	// transparent background
+// 	background-color: transparent !important;
+// }
+
+.no-padding {
+	padding: 0 !important
+}
+
+.no-margin {
+	margin: 0 !important
+}
+
+// .padding-thick {
+// 	padding: $thick-padding;
+// }
+
+// .padding {
+// 	padding: $input-padding;
+// }
+
+// .padding-input {
+// 	// input container padding eg: div containing inputs like check boxes or radio buttons
+// 	padding: $input-padding 0;
+// }
+
+// .padding-lr {
+// 	// padding for left and right - eg. good for horizontal lists
+// 	padding: 0 $standard-padding;
+// }
+
+// .padding-tb {
+// 	// padding for top and bottom - eg. good for vertical lists
+// 	padding: $standard-padding 0;
+// }
+
+// .padding-left {
+// 	padding-left: $standard-padding
+// }
+
+// .padding-right {
+// 	padding-right: $standard-padding
+// }
+
+// .padding-top {
+// 	padding-top: $standard-padding
+// }
+
+// .padding-bottom {
+// 	padding-bottom: $standard-padding
+// }
+
+// .margin-left {
+// 	margin-left: $standard-margin
+// }
+
+// .margin-right {
+// 	margin-right: $standard-margin
+// }
+
+// .margin-top {
+// 	margin-top: $standard-margin
+// }
+
+// .margin-bottom {
+// 	margin-bottom: $standard-margin
+// }
+
+// .grow {
+// 	width: 100%
+// }
+
+// .tight {
+// 	padding: 0;
+// 	margin: 0;
+// 	line-height: 1em;
+// }
+
+.scrolling-pane {
+	overflow-y: scroll
+}
+
+.space {
+	// based on md-margin
+	width: 6px;
+	height: 6px
+}
+
+.hide {
+	// hides a dom element
+	display: none !important;
+}
+
+.pre-line {
+	white-space: pre-line;
+}
+
+.center {
+	text-align: center
+}
+
+.pull-right {
+	float: right;
+}
+
+.pull-left {
+	float: left;
+}
+
+.list-comma-wrapper {
+	display: inline-block;
+	.list-comma::before {
+		content: ', ';
+	}
+	.list-comma:first-child::before {
+		content: '';
+	}
+	.list-comma:nth-child(n+2):last-child::before {
+		content: ' and '; // w/o oxford comma
+	}
+	.list-comma:nth-child(n+3):last-child::before {
+		content: ', and '; // w/ oxford comma
+	} // include class 'is-are' to include is or are after list
+	.list-comma.is-are:nth-child(n+1):last-child::after {
+		content: ' is ';
+	}
+	.list-comma.is-are:nth-child(n+2):last-child::after {
+		content: ' are ';
+	}
+}
+
+//------------------------------
+// visually appealing scroll bar
+.scroll-bar::-webkit-scrollbar {
+	height: 16px;
+	overflow: visible;
+	width: 16px;
+}
+
+.scroll-bar::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 1px 1px 1px 6px;
+	min-height: 28px;
+	padding: 100px 0 0;
+	-webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}
+
+.scroll-bar::-webkit-scrollbar-track {
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 0 0 0 4px;
+}
+
+//------------------------------
