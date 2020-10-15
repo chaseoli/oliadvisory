@@ -1,0 +1,31 @@
+<!-- {{ title }} -->
+
+<div class="wrapper">
+	<div class="inner" fxLayout="column" fxLayoutAlign.gt-sm="center center">
+
+		<div class="container mat-elevation-z3" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
+
+			<div fxHide.gt-xs fxLayout="column" fxLayoutAlign="center center">
+
+				<h1 class="mat-display-3">Coming soon.</h1>
+
+				<h2 class="mat-display-2" [innerText]="siteInfo.name"></h2>
+
+				<h2 class="mat-headline" [innerText]="siteInfo.tagLine"></h2>
+
+			</div>
+
+			<div fxHide.lt-sm fxLayout="column" fxLayoutAlign="center center">
+
+				<h1 class="mat-display-4">Coming soon.</h1>
+
+				<h2 class="mat-display-3" [innerText]="siteInfo.name"></h2>
+
+				<h2 class="mat-headline" [innerText]="siteInfo.tagLine"></h2>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,70 @@
+@import "~@angular/material/theming";
+@import "../../sass/dark-theme";
+
+.wrapper {
+    .header {
+        min-height: 400px;
+        position: relative;
+        height: 100vh;
+        background-image: url("../../../assets/backgrounds/chef-flour-lg.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 10%;
+
+        .inner {
+            background-color: rgba(map-get($primary-drk, darker), 0.4);
+        }
+
+        .stage {
+            margin: 0 40px;
+            margin-left: 80px;
+            margin-top: 140px;
+            margin-bottom: 80px;
+            padding: 20px;
+            z-index: 100;
+
+            // background-color: rgba(map-get($primary-drk, default), 0.8);
+            max-width: 350px;
+
+            // @include mat-elevation(24);
+
+            color: white;
+
+            @media screen and (max-width: 959px) {
+                margin-right: 40px;
+                margin-left: 40px;
+                margin-top: 0;
+                margin-bottom: 80px;
+            }
+
+            .mat-display-1 {
+                font-weight: 100;
+                text-align: center;
+                margin: 0;
+            }
+        }
+    }
+
+    .services {
+        .inner {
+            padding: 60px 20px;
+            max-width: 1300px;
+
+            .service {
+                padding: 20px;
+
+                .title {
+                    // text-align: center;
+                    text-align: left;
+                }
+
+                .desc {
+                    text-align: justify;
+
+                    // text-align: center;
+               
+                }
+            }
+        }
+    }
+}

@@ -1,1 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
+
+// material theming
+@import "~@angular/material/theming";
+
+// to use custom theme "colors" on an element:
+// 1) import the scss file into the component's scss file 
+//    (note that using the component's scss file will 
+//    encapsulate styles to that component only, use the 
+//    global styles.scss to use them globally) 
+// 2) Then use the sass mapping function "map-get($map, $value)" 
+//    to retrieve the colors, example: 
+//    "background-color: map-get($primary-drk, darker );"
+// only need to import mat-core() once globally
+@include mat-core;
+
+// google material icons import
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+// @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import "app/sass/font-awesome/scss/fontawesome.scss";
+@import "app/sass/font-awesome/scss/fa-brands.scss";
+// @import "app/sass/font-awesome/scss/fa-solid.scss";
+// @import "app/sass/font-awesome/scss/fa-regular.scss";
+
+
+// <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+// used to override typography
+// https://material.angular.io/guide/typography
+// @import url('https://fonts.googleapis.com/css?family=Quicksand:500,700|Roboto:300,400,500,700');
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700");
+
+// light theme is global default
+@import "app/sass/light-theme.scss";
+
+// to use the dark theme add ".dark-theme" class to the 
+// containing element and the stock material components 
+// placed within that class will use the dark-theme
+@import "app/sass/dark-theme.scss";
+
+// import helpers and typography sass
+// IMPORTANT: must be after mat-core to override typography from mat-core
+@import "app/sass/helpers.scss";
+@import "app/sass/typography.scss";
+
+body {
+    overflow-x: hidden;
+
+    // IMPORTANT: overflow-x:hidden - prevents the scroll bar flash on animations when transform transition animations goes off page 
+    // display: block;
+    height: 100%;
+    margin: 0;
+
+    // // see typography.scss
+    // font-family: 'Roboto', sans-serif; // color: red;
+}
+
+// adds border to buttons
+.btn-bdr {
+    border: 1px solid #fff !important;
+}
+
+.full-screen-dialog .mat-dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+}
