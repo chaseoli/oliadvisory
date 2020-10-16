@@ -2,10 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StyleService, IPageStyles } from './shared/style.service';
 import { ISiteInfo } from '../shared/models/common.interface';
 import { siteInfo } from '../shared/constants/info.constant';
-import { Subscription } from 'rxjs/Subscription';
-import { PhonePipe } from '../shared/pipes/phone.pipe';
 import { Router } from '@angular/router';
 import { NavigationEnd, Event } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './public.component.html',

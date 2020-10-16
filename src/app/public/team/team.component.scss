@@ -1,0 +1,514 @@
+@import "~@angular/material/theming";
+@import "../../sass/dark-theme";
+
+// svg path builder to assist in visualizing SVGs
+// https://codepen.io/chaseoli/pen/EodVBw
+// sets view height of each section to the height of the browser window
+$landing-view-height: 100vh;
+
+// limits the view height to 1000px 
+// (ie: restricts height of sections if for example the browser has been zoomed out by the user)
+$landing-view-max-height: 1000px;
+
+$landing-view-min-height: 700px;
+
+// ensure consistent background for landing page
+// $landing-bg:map-get($mat-dark-theme-background, card);
+// since this is a landing page perhaps the dark-theme is not 
+// the best background color becuase it doesn't show enough "blue"
+// this is good for apps but not landing page info
+// $landing-bg:#31333f;
+$landing-bg: map-get($primary-drk, darker);
+$landing-bg-trans: rgba($landing-bg, 0.75);
+$landing-section-margin: 30px;
+
+%height-restrictions {
+    // 1) restricts max height of sections when page is zoomed out
+    // 2) restricts min height when window view height (vh) is not large enough
+    max-height: $landing-view-max-height;
+    min-height: $landing-view-min-height;
+}
+
+.wrapper {
+    .dark-theme {
+        background-color: $landing-bg;
+        color: #fff;
+    }
+
+    .light-theme {
+        background-color: #fff;
+    }
+
+    .info {
+        // sets the minimum margin for info within sections
+        margin: 10px;
+    }
+
+    .section {
+        // ".section" is used to encapsulate special screen size rules
+
+        padding-bottom: 0.5px;
+        border-bottom: 0.5px solid rgba(#fff, 0.75);
+
+        .header {
+            margin-bottom: 40px;
+
+            .mat-title {
+                // font-size: 2em;
+                margin: 0;
+            }
+
+            .svg-line-trans {
+                fill: rgba(map-get($accent-drk, default), 1);
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media screen and (min-width: 1440px) {
+            // screen greater than 1440px
+
+            // space below and above sections
+            // margin-top: $landing-section-margin;
+            // margin-bottom: $landing-section-margin;
+
+            &.main {
+                // no margin only at top of page
+                margin-top: 0;
+            }
+        }
+
+        @media screen and (max-width: 1440px) {
+            // screen less than 1440px
+            &.mat-elevation-z6 {
+                // remove shadow
+                box-shadow: none;
+            }
+        }
+
+        @media screen and (max-width: 959px) {
+            // screen less than md
+            // font-size: 0.75em; // reduces all em font sizes when page is less than md
+            // CSS Font-Size: em vs. px vs. pt vs. percent, see https://kyleschaeffer.com/development/css-font-size-em-vs-px-vs-pt-vs/
+            &.main {
+                .stmt-container {
+                    .stmt-btns {
+                        position: absolute;
+                        top: 200px;
+                        left: 0;
+                    }
+
+                    .stmt {
+                        position: absolute;
+                        top: 250px;
+                        left: 0;
+                    }
+                }
+            }
+
+            &.opportunity {
+                .info {
+                    // removes padding to the right of opportunity statement on small screen
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .simple {
+        z-index: 9;
+        height: $landing-view-height + 100vh - $landing-view-height;
+
+        // @extend %height-restrictions;
+
+        width: 100%;
+        background-image: url("../../../assets/backgrounds/hands-sm.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        position: relative;
+
+        .overlay {
+            background-color: $landing-bg-trans !important; // important to overwrite dark-theme defaul bg
+            height: 100%;
+            width: 100%;
+        }
+
+        .wrapper {
+            height: 100%;
+            width: 100%;
+            max-width: 700px;
+
+            .stmt-wrapper {
+                // position: relative;
+                margin: 10px; // minimum margin on a small screen
+                // padding-top: 200px;               
+            }
+
+            .stmt{
+                font-weight: 100;
+            }
+
+            a{
+                color: inherit !important;
+            }
+            
+            .plus{
+                padding: 0 10px;
+            }            
+        }
+    }
+
+    .main {
+        z-index: 9;
+        height: $landing-view-height + 100vh - $landing-view-height;
+
+        @extend %height-restrictions;
+
+        width: 100%;
+        background-image: url("../../../assets/backgrounds/hands-sm.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        position: relative;
+
+        .overlay {
+            background-color: $landing-bg-trans !important; // important to overwrite dark-theme defaul bg
+            height: 100%;
+            width: 100%;
+        }
+
+        .wrapper {
+            height: 100%;
+            width: 100%;
+            max-width: 700px;
+
+            .stmt-wrapper {
+                position: relative;
+                margin: 10px; // minimum margin on a small screen
+                padding-top: 200px;
+
+                .arrows {
+                    width: 100%;
+                    height: 60px;
+                    font-size: 2em;
+                }
+
+                .stmt {
+                    position: absolute;
+
+                    // font-size: 2.5em;
+                    div {
+                        font-weight: 100;
+                    }
+
+                    strong {
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .stmt-select {
+                $stmt-sub-size: 200px;
+
+                position: relative;
+                width: $stmt-sub-size;
+                height: $stmt-sub-size;
+                cursor: pointer;
+
+                .title {
+                    // font-size: 1.2em;
+               
+                }
+
+                mat-icon {
+                    $stmt-icon-size: 40px;
+
+                    font-size: $stmt-icon-size;
+                    line-height: $stmt-icon-size;
+                    height: $stmt-icon-size;
+                    width: $stmt-icon-size;
+                }
+
+                .mat-button {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: $stmt-sub-size;
+                    height: $stmt-sub-size;
+                }
+            }
+
+            .btn-next {
+                padding-right: 150px;
+
+                .mat-fab {
+                    height: 80px;
+                    width: 80px;
+
+                    .mat-icon {
+                        height: 40px;
+                        width: 40px;
+                    }
+
+                    .material-icons {
+                        font-size: 40px;
+                    }
+                }
+            }
+
+            .btn-chev {
+                .mat-icon {
+                    line-height: 40px;
+                    height: 40px;
+                    width: 40px;
+                }
+
+                .material-icons {
+                    font-size: 40px;
+                }
+            }
+        }
+    }
+
+    .our-firm {
+        $shorten-section-view-height: 20vh;
+
+        position: relative;
+        height: $landing-view-height - $shorten-section-view-height;
+
+        @extend %height-restrictions;
+
+        .inner {
+            // needed for vertical centering on xs size screen
+            height: 100%;
+
+            .info {
+                // text-align: justify;
+                max-width: 450px;
+
+                a {
+                    font-size: inherit;
+                    line-height: inherit;
+
+                    // font-weight: inherit;
+               
+                }
+            }
+
+            @media screen and (min-width: 959px) {
+                // screen greater than 959px
+                padding-right: 0;
+
+                .our-firm {
+                    // font-size: 1.1em;
+               
+                }
+            }
+        }
+
+        .img-wrap {
+            position: relative;
+            height: $landing-view-height - $shorten-section-view-height;
+
+            @extend %height-restrictions;
+
+            .img {
+                width: 100%;
+                height: 100%;
+                background-image: url("../../../assets/images/penquins-xs.jpg");
+                background-repeat: no-repeat;
+                background-position: 80% 50%;
+                background-size: cover; // .overlay-lines {
+                //     height: 60%;
+                //     position: absolute;
+                //     right: 0;
+                //     bottom: 0;
+                //     overflow: hidden;
+                //     polygon{
+                //         fill: #fff;
+                //         fill-opacity: 0.3;
+                //     }
+                // }
+           
+            }
+        }
+
+        .svg-slant {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: $landing-view-height - $shorten-section-view-height;
+
+            @extend %height-restrictions;
+
+            width: 200px;
+
+            polygon {
+                fill: $landing-bg;
+            }
+        }
+    }
+
+    .beliefs {
+        background-image: url("../../../assets/backgrounds/chalk-light-1200x800.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 0%; // padding: 40px;
+        height: $landing-view-height - 20vh;
+
+        @extend %height-restrictions;
+
+        overflow: hidden !important;
+
+        .overlay {
+            background-color: $landing-bg-trans !important;
+            height: 100%;
+            width: 100%;
+            position: relative;
+
+            .inner {
+                width: 100%;
+                max-width: 700px;
+                padding-top: 150px;
+
+                .header {
+                    margin-left: 20px;
+                    margin-right: 20px;
+                }
+
+                .quote {
+                    position: absolute;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    max-width: 700px;
+                    font-weight: 100;
+                }
+            }
+
+            .dots {
+                padding: 10px;
+                padding-bottom: 100px;
+                cursor: pointer;
+                font-size: 40px;
+                text-shadow: 2px 2px 2px rgba(#000, 0.5);
+            }
+
+            .play-pause {
+                position: absolute;
+                bottom: 50px; // dont use 100px or it will be inline with the dots on small screen
+                right: 50px;
+                font-size: 40px;
+            }
+        }
+    }
+
+    .team {
+        
+        $shorten-section-view-height: 20vh;
+
+        position: relative;
+        padding: 40px;
+        padding-top: 100px;
+
+        .title {
+            max-width: 300px;
+        }
+
+        .team-member {
+            $team-member-img-height: 300px;
+            $team-member-margin: 10px; // background-image: url("http://demo.qodearena.com/projects/anticahtml/img/team_img1.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+            height: $team-member-img-height;
+            width: $team-member-img-height;
+            position: relative;
+            margin: 15px 15px;
+            cursor: pointer;
+
+            .overlay {
+                height: $team-member-img-height - 2 * $team-member-margin;
+                width: $team-member-img-height - 2 * $team-member-margin;
+                margin: $team-member-margin;
+                background-position: center;
+                background-color: rgba(map-get($accent-drk, darker), 0.8);
+
+                // font-size: 4em;
+                color: #fff;
+
+                // .plus{
+                //     font-size: 40px;
+                // }
+
+                .header {
+                    // font-size: 20px;
+                    position: absolute;
+                    text-align: center;
+                    top: 30px;
+                }
+
+                .footer {
+                    // font-size: 20px;
+                    position: absolute;
+                    text-align: center;
+                    bottom: 15px;
+                }
+            }
+        }
+    }
+
+    .reviews {
+        .light-theme {
+            background-color: #fff;
+            padding: 20px;
+
+            .avatar {
+                height: 40px;
+                width: 40px;
+                overflow: hidden;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .fa-yelp {
+                color: red;
+            }
+
+            // .star{
+            //     // font-size: 10px;
+            // }
+       
+        }
+    }
+
+    .sm-section {
+        //sets minimum padding
+        padding: 30px 10px;
+        min-height: 150px;
+
+        // background-color: #fff;
+
+        .header {
+            text-align: center;
+            margin-bottom: 0px;
+        }
+
+        // .desc {
+        //     // max-width: 450px;
+
+        //     // font-size: 1.2em;
+        //     // font-weight: 300px;
+
+        //     // line-height: 1.75em;
+
+        // }
+
+        button {
+            padding: 10px 20px;
+
+            // font-size: 1.2em;
+       
+        }
+    }
+}

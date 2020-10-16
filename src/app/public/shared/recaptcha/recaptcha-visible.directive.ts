@@ -5,7 +5,7 @@ import { WindowService } from '../../../shared/window.service';
 import { DocumentService } from '../../../shared/document.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UrlConstants } from '../../../shared/constants/urls.constant';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 // Recaptcha for angular and node.js:
 // https://www.youtube.com/watch?v=UzCkSzmEq8E
@@ -15,10 +15,9 @@ declare const grecaptcha: any;
 
 @Directive({
   selector: '[appVisibleRecaptcha]',
-  exportAs: 'appVisibleRecaptcha'
+  exportAs: 'appVisibleRecaptcha',
 })
 export class ReCaptchaVisibleDirective implements AfterViewInit {
-
   private urls: UrlConstants;
   // private reCaptchaSiteKey: string;
   private widgetId: number;
@@ -32,10 +31,7 @@ export class ReCaptchaVisibleDirective implements AfterViewInit {
   private token: string;
   private url: string;
 
-  constructor(
-    private _window: WindowService,
-    private http: HttpClient
-  ) {
+  constructor(private _window: WindowService, private http: HttpClient) {
     this.urls = new UrlConstants();
     // this.reCaptchaSiteKey = visibleSiteKey;
     // this.onLoaded.emit(false);
@@ -43,8 +39,13 @@ export class ReCaptchaVisibleDirective implements AfterViewInit {
     this.loaded = false;
   }
 
-  submit(firestorePath: string, data: {}, url: string, dialogRef?: MatDialogRef<any>, scrollTop?: HTMLElement) {
-
+  submit(
+    firestorePath: string,
+    data: {},
+    url: string,
+    dialogRef?: MatDialogRef<any>,
+    scrollTop?: HTMLElement
+  ) {
     // start spinner so that user can't re-submit request immediately
     this.spinner = true;
 
@@ -55,7 +56,6 @@ export class ReCaptchaVisibleDirective implements AfterViewInit {
     this.url = url;
 
     this.post();
-
   }
 
   ngAfterViewInit() {
@@ -65,67 +65,58 @@ export class ReCaptchaVisibleDirective implements AfterViewInit {
   }
 
   private initRecaptcha() {
-
     // this.scrollTopElm = scrollTop;
     // this.dialogRef = dialogRef;
 
     this._window.windowRef.reCaptchaCallback = () => {
-
       // console.log('callback fired');
 
       this.widgetId = grecaptcha.render('recaptcha-visible', {
-        'sitekey': visibleSiteKey,
-        'callback': (token) => {
+        sitekey: visibleSiteKey,
+        callback: (token) => {
           // console.log('invisible token', token);
           this.token = token;
           // this.post(token);
-        }
+        },
       });
 
       this.hasLoaded();
 
       // console.log('widget id: ', this.widgetId);
-
     };
 
     this.addRecaptchaScript();
-
   }
 
   private post() {
-
-    this.http.post(
-      this.url, {
+    this.http
+      .post(this.url, {
         firestorePath: this.firestorePath,
         recaptchaToken: this.token,
         recaptchaType: 'visible',
-        data: this.data
-      }
-    ).map((res: any) => {
+        data: this.data,
+      })
+      .pipe(
+        map((res: any) => {
+          if (res.success !== undefined && res.success !== false) {
+            // reset recaptcha
+            grecaptcha.reset(this.widgetId);
+            delete this._window.windowRef.reCaptchaCallback;
 
-      if (res.success !== undefined && res.success !== false) {
+            if (this.dialogRef) {
+              this.dialogRef.close({ action: 'submit', data: this.data });
+            }
+          } else {
+            // true so spinner stops and user can read message
+            this.spinner = false;
 
-        // reset recaptcha
-        grecaptcha.reset(this.widgetId);
-        delete this._window.windowRef.reCaptchaCallback;
+            console.log(res.msg);
 
-        if (this.dialogRef) {
-          this.dialogRef.close({ action: 'submit', data: this.data });
-        }
-
-      } else {
-
-        // true so spinner stops and user can read message
-        this.spinner = false;
-
-        console.log(res.msg);
-
-        this.warnMsg = res.msg;
-
-      }
-
-    }).subscribe();
-
+            this.warnMsg = res.msg;
+          }
+        })
+      )
+      .subscribe();
   }
 
   private addRecaptchaScript() {
@@ -137,12 +128,12 @@ export class ReCaptchaVisibleDirective implements AfterViewInit {
       const script = document.createElement('script');
       // script.src = `https://www.google.com/recaptcha/api.js`;
       script.id = 'recaptcha-script';
-      script.src = 'https://www.google.com/recaptcha/api.js?onload=reCaptchaCallback&render=explicit';
+      script.src =
+        'https://www.google.com/recaptcha/api.js?onload=reCaptchaCallback&render=explicit';
       script.async = true;
       script.defer = true;
       document.body.appendChild(script);
     } else {
-
       // remove script from page
       document.getElementById('recaptcha-script').remove();
 
@@ -151,7 +142,6 @@ export class ReCaptchaVisibleDirective implements AfterViewInit {
 
       this.hasLoaded();
     }
-
   }
 
   hasLoaded() {
@@ -167,5 +157,4 @@ export class ReCaptchaVisibleDirective implements AfterViewInit {
       this.loaded = true;
     }, 500);
   }
-
 }

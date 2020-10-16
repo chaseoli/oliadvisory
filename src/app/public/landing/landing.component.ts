@@ -1,21 +1,18 @@
 import {
   Component,
   HostListener,
-  OnInit,
-  Inject,
-  AfterViewInit
+  OnInit
 } from '@angular/core';
 import * as _ from 'lodash';
 import { StyleService } from '../shared/style.service';
-import { DOCUMENT } from '@angular/platform-browser';
 import { siteInfo } from '../../shared/constants/info.constant';
 import { ISiteInfo } from '../../shared/models/common.interface';
 import { dark_theme } from '../../shared/style/material-design-color-pallete';
 import { MatDialog } from '@angular/material/dialog';
 import { GetStartedDialogComponent } from '../shared/get-started-dialog/get-started-dialog.component';
 import { SubmitMessageDialogComponent } from '../shared/submit-message/submit-message.component';
-import { FirebaseService } from '../../shared/firebase.service';
-import { TeamDialogComponent } from './team-dialog/team-dialog.component';
+
+import { TeamDialogComponent } from '../team/team-dialog/team-dialog.component';
 import { UrlConstants } from '../../shared/constants/urls.constant';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -26,6 +23,9 @@ import {
   state,
   style
 } from '@angular/animations';
+import { map } from 'rxjs/operators';
+import {faTwitter, faLinkedinIn} from '@fortawesome/free-brands-svg-icons'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 interface IStatements {
   title: string;
@@ -228,6 +228,10 @@ interface IBeliefs {
 })
 export class LandingComponent implements OnInit {
 
+  twitter = faTwitter
+  linkedIn = faLinkedinIn
+  faCoffee = faCoffee;
+
   statementIdx: number;
   title = 'landing';
   statements: IStatements[];
@@ -247,7 +251,6 @@ export class LandingComponent implements OnInit {
   constructor(
     private styles: StyleService,
     public dialog: MatDialog,
-    firebase: FirebaseService,
     private http: HttpClient
   ) {
     this.setAnnouncement();
@@ -301,15 +304,17 @@ export class LandingComponent implements OnInit {
   yelpReviews() {
     this.http.get(
       this.urls.yelp
-    ).map((res) => {
-      // console.log(res);
-      this.reviews = _.filter(JSON.parse(res[0].body).reviews, (r: any) => {
-        // only show greater than 4 star reviews
-        return r.rating >= 4;
-      });
-      // console.log(this.reviews);
-      this.biz = res[1].body;
-    }).subscribe();
+    ).pipe(
+      map((res) => {
+        // console.log(res);
+        this.reviews = _.filter(JSON.parse(res[0].body).reviews, (r: any) => {
+          // only show greater than 4 star reviews
+          return r.rating >= 4;
+        });
+        // console.log(this.reviews);
+        this.biz = res[1].body;
+      })
+    ).subscribe();
   }
 
   updateMouse() {
@@ -394,27 +399,27 @@ export class LandingComponent implements OnInit {
         internal_calendar: '/now',
         external_calendar: ''
       },
-      {
-        first: 'Torrie',
-        last: 'Tinley',
-        cert: '',
-        title: 'Digital Marketing & Brand',
-        blurb: 'This guy rocks!',
-        about: 'Out of the box thinker and innovative leader with 10+ years experience' +
-          ' in digital marketing, advertising, copywriting & e-commerce arenas within the' +
-          ' action sports, retail, entertainment, non-profit and real estate industries.' +
-          ' Strong background in brand management, digital marketing strategy and planning,' +
-          ' social media, content marketing, influencer activations, campaigns,' +
-          ' performance marketing, e-commerce, events, photoshoots, sponsorships, PR and more.',
-        state: 'active',
-        avatar: './assets/avatars/torrie.jpg',
-        facebook: 'https://www.facebook.com/torrie.tinley',
-        twitter: 'https://twitter.com/torrietin',
-        linkedin: 'https://www.linkedin.com/in/torrietinley/',
-        instagram: 'https://www.instagram.com/torrietin/',
-        internal_calendar: '',
-        external_calendar: ''
-      }
+      // {
+      //   first: 'Torrie',
+      //   last: 'Tinley',
+      //   cert: '',
+      //   title: 'Digital Marketing & Brand',
+      //   blurb: 'This guy rocks!',
+      //   about: 'Out of the box thinker and innovative leader with 10+ years experience' +
+      //     ' in digital marketing, advertising, copywriting & e-commerce arenas within the' +
+      //     ' action sports, retail, entertainment, non-profit and real estate industries.' +
+      //     ' Strong background in brand management, digital marketing strategy and planning,' +
+      //     ' social media, content marketing, influencer activations, campaigns,' +
+      //     ' performance marketing, e-commerce, events, photoshoots, sponsorships, PR and more.',
+      //   state: 'active',
+      //   avatar: './assets/avatars/torrie.jpg',
+      //   facebook: 'https://www.facebook.com/torrie.tinley',
+      //   twitter: 'https://twitter.com/torrietin',
+      //   linkedin: 'https://www.linkedin.com/in/torrietinley/',
+      //   instagram: 'https://www.instagram.com/torrietin/',
+      //   internal_calendar: '',
+      //   external_calendar: ''
+      // }
       // {
       //   first: 'Kristin',
       //   last: 'Oliphant',
@@ -570,7 +575,7 @@ export class LandingComponent implements OnInit {
       disableClose: true
     });
 
-    dialogRef.beforeClose().subscribe(result => {
+    dialogRef.beforeClosed().subscribe(result => {
 
       // console.log('The dialog was closed, result: ', result);
 

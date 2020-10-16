@@ -1,25 +1,16 @@
-// Modules
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PublicModule } from './public/public.module';
 import { CustomMaterialModule } from './custom-material.module';
 import { HttpClientModule } from '@angular/common/http';
-
-// Components
-import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './not-found/not-found.component';
-
-// Services
-import { FirebaseService } from './shared/firebase.service';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PageNotFoundComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +18,10 @@ import { FirebaseService } from './shared/firebase.service';
     PublicModule,
     CustomMaterialModule,
     HttpClientModule,
-    AppRoutingModule // <-- Important: AppRoutingModule must come last https://angular.io/guide/router#module-import-order-matters
+    AppRoutingModule,
+    FontAwesomeModule
   ],
-  providers: [FirebaseService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

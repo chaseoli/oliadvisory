@@ -1,13 +1,12 @@
+import { Component, OnInit } from '@angular/core';
 import {
-  Component,
   trigger,
   state,
   style,
   transition,
   animate,
-  keyframes
-} from '@angular/core';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+  keyframes,
+} from '@angular/animations';
 import { StyleService } from '../shared/style.service';
 import { ISiteInfo } from '../../shared/models/common.interface';
 import { siteInfo } from '../../shared/constants/info.constant';
@@ -17,7 +16,6 @@ import { siteInfo } from '../../shared/constants/info.constant';
   styleUrls: ['./coming-soon.component.scss'],
 })
 export class ComingSoonComponent implements OnInit {
-
   siteInfo: ISiteInfo;
 
   constructor(private styles: StyleService) {
@@ -28,5 +26,4 @@ export class ComingSoonComponent implements OnInit {
   ngOnInit() {
     this.siteInfo = siteInfo;
   }
-
 }

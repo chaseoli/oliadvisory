@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { Router, Event, NavigationEnd, NavigationStart } from '@angular/router';
-import { log } from 'util';
-import * as _ from 'lodash';
+import { Router, Event, NavigationStart } from '@angular/router';
+import * as _ from 'lodash'
 
 export interface IPageStyles {
 

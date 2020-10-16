@@ -7,6 +7,7 @@ import { StyleService } from '../shared/style.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { UrlConstants } from '../../shared/constants/urls.constant';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-transaction',
@@ -46,10 +47,12 @@ export class UnsubscribeComponent implements OnInit {
         // if 0 then false, if 1 true
         all: Boolean(Number(data.all))
       }
-    ).map((res) => {
-      console.log(res);
-      this.msg = 'We have unsubscribed you from our mailing list.';
-    }).subscribe();
+    ).pipe(
+      map((res) => {
+        console.log(res);
+        this.msg = 'We have unsubscribed you from our mailing list.';
+      })
+    ).subscribe();
 
 
   }

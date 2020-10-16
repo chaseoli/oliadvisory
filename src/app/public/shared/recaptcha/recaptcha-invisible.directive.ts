@@ -2,10 +2,9 @@ import { AfterViewInit, Directive } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { invisibleSiteKey } from '../../../shared/constants/recaptcha.constant';
 import { WindowService } from '../../../shared/window.service';
-import { DocumentService } from '../../../shared/document.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UrlConstants } from '../../../shared/constants/urls.constant';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 // Recaptcha for angular and node.js:
 // https://www.youtube.com/watch?v=UzCkSzmEq8E
@@ -98,30 +97,32 @@ export class ReCaptchaInvisibleDirective implements AfterViewInit {
         recaptchaType: 'invisible',
         data: this.data
       }
-    ).map((res: any) => {
+    ).pipe(
+      map((res: any) => {
 
-      if (res.success !== undefined && res.success !== false) {
-
-        // reset recaptcha
-        grecaptcha.reset(this.widgetId);
-        delete this._window.windowRef.reCaptchaCallback;
-
-        if (this.dialogRef) {
-          this.dialogRef.close({ action: 'submit', data: this.data });
+        if (res.success !== undefined && res.success !== false) {
+  
+          // reset recaptcha
+          grecaptcha.reset(this.widgetId);
+          delete this._window.windowRef.reCaptchaCallback;
+  
+          if (this.dialogRef) {
+            this.dialogRef.close({ action: 'submit', data: this.data });
+          }
+  
+        } else {
+  
+          // true so spinner stops and user can read message
+          this.spinner = false;
+  
+          console.log(res.msg);
+  
+          this.warnMsg = res.msg;
+  
         }
-
-      } else {
-
-        // true so spinner stops and user can read message
-        this.spinner = false;
-
-        console.log(res.msg);
-
-        this.warnMsg = res.msg;
-
-      }
-
-    }).subscribe();
+  
+      })
+    ).subscribe();
 
   }
 

@@ -29,9 +29,11 @@ import { GetStartedDialogComponent } from './shared/get-started-dialog/get-start
 import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { SubmitMessageDialogComponent } from './shared/submit-message/submit-message.component';
-import { TeamDialogComponent } from './landing/team-dialog/team-dialog.component';
+import { TeamDialogComponent } from './team/team-dialog/team-dialog.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
 import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +53,7 @@ import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
         GetStartedDialogComponent,
         SubmitMessageDialogComponent,
         TeamDialogComponent,
+        TeamComponent,
         TermsComponent,
         PrivacyComponent,
         BouncingMouseComponent,
@@ -67,7 +70,8 @@ import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
         HttpClientModule,
         CustomMaterialModule,
         FormsModule,
-        PublicRoutingModule
+        PublicRoutingModule,
+        FontAwesomeModule
     ],
     providers: [
         StyleService,

@@ -1,0 +1,147 @@
+<div class="wrapper">
+
+  <div class="team section dark-theme" fxLayout="column">
+    <!-- <div class="header">
+      <div class="mat-headline">Us.</div>
+      <svg class="svg-line-trans" height="5" width="200">
+        <polygon points="0 1, 200 1, 200 0, 0 0" />
+      </svg>
+    </div> -->
+
+    <div
+      fxLayout.gt-sm="row"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="space-around center"
+    >
+      <div
+        *ngFor="let item of team; index as idx"
+        class="team-member"
+        [style.background-image]="'url(' + item.avatar + ')'"
+        (mouseleave)="item.state = 'inactive'"
+        (mouseover)="selectRepeatAnimationState(idx, 'team')"
+      >
+        <div
+          class="overlay"
+          (click)="dialogTeam(item)"
+          mat-ripple
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          [@teamOverlay]="item.state"
+        >
+          <span class="mat-display-2 no-margin">+</span>
+          <div class="header mat-title">
+            <strong [innerText]="item.first + ' '"></strong>
+            <strong [innerText]="item.last + ''"></strong>
+            <span *ngIf="item.cert" [innerText]="', ' + item.cert"></span>
+          </div>
+          <div class="footer" fxLayout="column" fxLayoutAlign="end center">
+            <div>
+              <a mat-icon-button *ngIf="item.linkedin" [href]="item.linkedin">
+                <!-- <mat-icon
+                  class="fab fa-linkedin-in"
+                  aria-hidden="true"
+                ></mat-icon> -->
+                <fa-icon [icon]="linkedIn"></fa-icon>
+              </a>
+
+              <a mat-icon-button *ngIf="item.facebook" [href]="item.facebook">
+                <mat-icon
+                  class="fab fa-facebook-f"
+                  aria-hidden="true"
+                ></mat-icon>
+              </a>
+
+              <a mat-icon-button *ngIf="item.twitter" [href]="item.twitter">
+                <!-- <mat-icon class="fab fa-twitter" aria-hidden="true"></mat-icon> -->
+                <fa-icon [icon]="twitter"></fa-icon>
+              </a>
+
+              <a mat-icon-button *ngIf="item.instagram" [href]="item.instagram">
+                <mat-icon
+                  class="fab fa-instagram"
+                  aria-hidden="true"
+                ></mat-icon>
+              </a>
+              
+            </div>
+
+            <div fxLayout="row">
+              <button
+                mat-button
+                *ngIf="item.internal_calendar"
+                [routerLink]="item.internal_calendar"
+              >
+                Meet Now
+              </button>
+              <a
+                mat-button
+                *ngIf="item.external_calendar"
+                [href]="item.external_calendar"
+                >Meet Now</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="reviews"
+    class="reviews sm-section section dark-theme"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <div class="header">
+      <div class="mat-headline">What people are saying.</div>
+      <svg class="svg-line-trans" height="5" width="200">
+        <polygon points="0 1, 200 1, 200 0, 0 0" />
+      </svg>
+    </div>
+
+    <div
+      fxLayout="row"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="space-around stretch"
+      fxLayoutGap="30px"
+      style="padding: 30px"
+    >
+      <a
+        class="mat-elevation-z6 light-theme no-underline"
+        [href]="r.url"
+        *ngFor="let r of reviews; index as idx"
+        fxFlex="33"
+        fxLayout="column"
+      >
+        <div>
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="fab fa-yelp" aria-hidden="true"></mat-icon>
+            <div>
+              <div class="mat-title no-margin" [innerText]="r.user.name"></div>
+            </div>
+          </div>
+          <div fxLayout="row">
+
+            <div fxLayout="row">
+              <mat-icon
+                *ngFor="let s of arr(r.rating).fill(1); index as idx"
+                class="star"
+                >star_rate</mat-icon
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="mat-body-1" fxFlex>
+          <div fxFill fxLayout="column" fxLayoutAlign="center center">
+            <div>
+              <span [innerText]="r.text"></span>
+              <a [href]="r.url">more</a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>

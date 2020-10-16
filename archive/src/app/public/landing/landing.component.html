@@ -1,0 +1,335 @@
+<!-- {{ title }} -->
+
+<!-- 
+	TODOs: 
+	-Create an articles section using grid. 
+	Article about investing in Bitcoin - talk to bob about using his idea
+	tell users that we do not make investment recommendations, instead we 
+	assist in evaluating risk
+	-Lookup space shuttle images for background
+	-Add contact us 
+	-add icons/illustration to top of page like quickbooks
+	-add lines similar to the dribble example
+	-add values use vinod kosla as example of value section
+ -->
+
+<div class="wrapper">
+
+	<div class="simple section">
+
+		<app-bouncing-mouse [theme]="'light'"></app-bouncing-mouse>
+
+		<div class="overlay dark-theme" fxLayout="column">
+
+			<div class="wrapper" fxLayout="column" fxFlexAlign="center" fxLayoutAlign="center center">
+
+				<div class="stmt-wrapper">
+					<div class="stmt active mat-display-3 no-margin"> <strong class="text-accent">Streamline</strong> your back office</div>
+					<div fxLayout="row wrap" class="mat-title">
+						<a routerLink="/accounting">Technical Accounting</a>
+						<div class="plus text-accent">+</div>
+						<a routerLink="/technology">Technology</a>
+					</div>
+				</div>
+
+				<!-- <div fxFlex></div> -->
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- <div class="main section">
+
+		<app-bouncing-mouse [theme]="'light'"></app-bouncing-mouse>
+
+		<div class="overlay dark-theme" fxLayout="column">
+
+			<div class="wrapper" fxLayout="column" fxFlexAlign="center">
+
+				<div class="stmt-wrapper">
+
+					<div class="arrows" fxLayout="row">
+
+						<button fxFlexOrder.lt-md="3" class="btn-chev" mat-icon-button (click)="toggleStmt(-1)" [disabled]="statementIdx === 0">
+							<mat-icon>chevron_left</mat-icon>
+						</button>
+
+						<button fxFlexOrder.lt-md="4" class="btn-chev" mat-icon-button (click)="toggleStmt(1)" [disabled]="statementIdx ===  statements.length-1">
+							<mat-icon>chevron_right</mat-icon>
+						</button>
+
+						<div fxFlexOrder.lt-md="2" fxHide.gt-sm fxFlex></div>
+
+						<div class="mat-title" fxFlexOrder.lt-md="0" fxHide.gt-xs fxFlexAlign="center" [innerText]="statements[statementIdx].title"></div>
+
+					</div>
+
+					<div *ngFor="let a of  statements" [class.inactive]="a.state !== 'active'">
+
+						<div [@focusPanel]="a.state" fxLayout="column" class="stmt">
+							<div class="mat-display-2 no-margin" [innerHtml]="a.desc" (click)="toggleStmt(1)"></div>
+
+
+							<div fxFlexAlign="end" fxFlexAlign.lt-md="start" style="margin-top: 20px">
+								<button class="btn-bdr" mat-button [routerLink]="a.link">{{a.btnText}}</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div fxFlex></div>
+
+				<div fxLayout="row" fxShow.lt-sm="false" fxLayoutAlign="space-between center">
+					<div class="stmt-select" mat-ripple fxLayout="column" *ngFor="let a of  statements; index as i" (click)="selectStmt(i)" [@borderBottom]="a.state"
+					    [class.active]="a.state === 'active'">
+						<div fxFlex fxLayout="column" fxLayoutAlign="center center">
+							<mat-icon [innerText]="a.icon"></mat-icon>
+							<br>
+							<br>
+							<div class="mat-title" [innerText]="a.title"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div> -->
+
+	<div class="beliefs section dark-theme">
+
+		<div class="overlay" fxLayout="column" fxLayoutAlign="start center">
+
+			<div class="inner info" fxFlex>
+
+				<div class="header">
+					<div class="mat-headline">We believe</div>
+					<svg class="svg-line-trans" height="5" width="200">
+						<polygon points="0 1, 200 1, 200 0, 0 0" />
+					</svg>
+				</div>
+
+				<!-- <div class="quote" *ngFor="let item of beliefs" [@flyInOut]="in" [innerHtml]="item.html"></div> -->
+
+				<div class="quote mat-display-2" *ngFor="let b of beliefs" [innerHtml]="b.html" [@beliefs]="b.state"></div>
+
+			</div>
+
+			<div fxLayout="row" class="dots">
+				<button mat-icon-button *ngFor="let b of beliefs; index as idx" (click)="updateBelief(idx)">
+				<!-- <button mat-icon-button *ngFor="let b of beliefs; index as idx" (click)="selectRepeatAnimationState(idx, 'beliefs')"> -->
+				<!-- <button mat-icon-button *ngFor="let b of _beliefs; index as idx" (click)="bIdx = idx"> -->
+				<!-- <button mat-icon-button *ngFor="let b of _beliefs; index as idx" (click)="updateBelief(idx)"> -->
+				<mat-icon [class.text-accent]="b.state === 'active'">lens</mat-icon>
+				</button>
+			</div>
+
+			<div class="play-pause" (click)="beliefsPaused = !beliefsPaused; updateBelief()">
+				<button mat-icon-button>				
+					<mat-icon [innerText]="beliefsPaused ? 'play_arrow' : 'pause'"></mat-icon>
+				</button>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="our-firm section dark-theme">
+		<div class="inner" fxLayout="row" fxLayoutAlign="space-between center">
+			<div fxFlex fxFlex.sm="70" fxLayout="column" fxLayoutAlign="center center">
+
+				<div class="header" fxLayout="column" fxLayoutAlign="center center">
+					<div class="mat-headline">Our firm</div>
+					<svg class="svg-line-trans" height="5" width="200">
+						<polygon points="0 1, 200 1, 200 0, 0 0" />
+					</svg>
+				</div>
+
+				<div class="info mat-body-2">
+					Founded by a former big four rebel accountant, Chase Oliphant envisioned building a new forward-thinking kind of firm. A
+					firm which recognizes that sustainable and responsible business practices are equally important to the firm's profits.
+					We like clients who aspire to be different. Where others see risk, they see opportunity. We help by taking responsibility
+					for the operational activities that distract business leaders and entrepreneurs so that they can focus on what matters.
+					By combining expertise in
+					<a routerLink="/accounting">accounting</a>,
+					<a routerLink="/technology">technology</a>, and
+					<a routerLink="/creative">creative</a>
+
+					<!-- <span class="text-accent">accounting</span>, <span class="text-accent">technology</span>,
+					and
+					<span class="text-accent">creative</span>  -->
+
+					design, we aim to serve the whole client.
+					<!-- with this primary objective in mind. -->
+				</div>
+				<br><br>
+				<div fxLayout="row">
+					<button class="btn-bdr" mat-button (click)="dialogGetStarted()">Start a project.</button>
+					<div fxFlexAlign="center" style="padding: 0 20px"></div>
+					<button class="btn-bdr" mat-button routerLink="/careers">Join us.</button>
+				</div>
+			</div>
+			<div class="img-wrap" fxFlex fxFlex.sm="30" fxHide.lt-sm>
+				<svg class="svg-slant" fxHide.lt-md>
+					<polygon points="0 1000, 150 0, 0 0" />
+				</svg>
+				<div class="img">
+					<!-- <svg class="overlay-lines" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 585 585">
+							<polygon points="542.5 566 520 566 545.5 477 568 477 542.5 566" />
+							<polygon points="430.86 566 408.36 566 433.86 477 456.36 477 430.86 566" />
+							<polygon points="375.05 566 352.55 566 378.05 477 400.55 477 375.05 566" />
+							<polygon points="263.41 566 240.91 566 266.41 477 288.91 477 263.41 566" />
+							<polygon points="207.59 566 185.09 566 210.59 477 233.09 477 207.59 566" />
+							<polygon points="95.95 566 73.45 566 98.95 477 121.45 477 95.95 566" />
+							<polygon points="40.14 566 17.64 566 43.14 477 65.64 477 40.14 566" />
+							<polygon points="486.68 455 464.18 455 489.68 366 512.18 366 486.68 455" />
+							<polygon points="430.86 455 408.36 455 433.86 366 456.36 366 430.86 455" />
+							<polygon points="375.05 455 352.55 455 378.05 366 400.55 366 375.05 455" />
+							<polygon points="263.41 455 240.91 455 266.41 366 288.91 366 263.41 455" />
+							<polygon points="151.77 455 129.27 455 154.77 366 177.27 366 151.77 455" />
+							<polygon points="486.68 355 464.18 355 489.68 266 512.18 266 486.68 355" />
+							<polygon points="430.86 355 408.36 355 433.86 266 456.36 266 430.86 355" />
+							<polygon points="319.23 355 296.73 355 322.23 266 344.73 266 319.23 355" />
+							<polygon points="542.5 241 520 241 545.5 152 568 152 542.5 241" />
+						</svg> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="team section dark-theme" fxLayout="column">
+		<div class="header">
+			<div class="mat-headline">Great work starts with a smart team</div>
+			<svg class="svg-line-trans" height="5" width="200">
+				<polygon points="0 1, 200 1, 200 0, 0 0" />
+			</svg>
+		</div>
+
+		<div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign="space-around center">
+
+			<div *ngFor="let item of team; index as idx" class="team-member" [style.background-image]="'url(' + item.avatar + ')'" (mouseleave)="item.state = 'inactive'"
+			    (mouseover)="selectRepeatAnimationState(idx,'team')">
+				<div class="overlay" (click)="dialogTeam(item)" mat-ripple fxLayout="column" fxLayoutAlign="center center" [@teamOverlay]="item.state">
+					<span class="mat-display-2 no-margin">+</span>
+					<div class="header mat-title">
+						<strong [innerText]='item.first'></strong>
+						<strong [innerText]='item.last'></strong>
+						<span [innerText]='item.cert'></span>
+					</div>
+					<div class="footer" fxLayout="column" fxLayoutAlign="end center">
+
+						<div>
+
+							<a mat-icon-button *ngIf="item.facebook" [href]="item.facebook">
+								<mat-icon class="fab fa-facebook-f" aria-hidden="true"></mat-icon>
+							</a>
+
+							<a mat-icon-button *ngIf="item.linkedin" [href]="item.linkedin">
+								<mat-icon class="fab fa-linkedin-in" aria-hidden="true"></mat-icon>
+							</a>
+
+							<a mat-icon-button *ngIf="item.twitter" [href]="item.twitter">
+								<mat-icon class="fab fa-twitter" aria-hidden="true"></mat-icon>
+							</a>
+
+							<a mat-icon-button *ngIf="item.instagram" [href]="item.instagram">
+								<mat-icon class="fab fa-instagram" aria-hidden="true"></mat-icon>
+							</a>
+
+						</div>
+
+						<div fxLayout="row">
+							<button mat-button *ngIf="item.internal_calendar" [routerLink]="item.internal_calendar">Meet Now</button>
+							<a mat-button *ngIf="item.external_calendar" [href]="item.external_calendar">Meet Now</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div *ngIf="reviews" class="reviews sm-section section dark-theme" fxLayout="column" fxLayoutAlign="center center">
+
+		<div class="header">
+			<div class="mat-headline">What people are saying.</div>
+			<svg class="svg-line-trans" height="5" width="200">
+				<polygon points="0 1, 200 1, 200 0, 0 0" />
+			</svg>
+		</div>
+
+		<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-around stretch" fxLayoutGap="30px" style="padding: 30px;">
+			<a class="mat-elevation-z6 light-theme no-underline" [href]="r.url" *ngFor="let r of reviews; index as idx" fxFlex="33" fxLayout="column">
+				<div>
+					<div fxLayout="row" fxLayoutAlign="start center">
+						<mat-icon class="fab fa-yelp" aria-hidden="true"></mat-icon>
+						<div>
+							<div class="mat-title no-margin" [innerText]="r.user.name"></div>
+						</div>
+					</div>
+					<div fxLayout="row">
+						<!-- <div>							
+								<div class="avatar" [style.background-image]="'url(' + r.user.image_url + ')'"></div>
+							</div> -->
+						<div fxLayout="row">
+							<mat-icon *ngFor="let s of arr(r.rating).fill(1); index as idx" class="star">star_rate</mat-icon>
+						</div>
+					</div>
+				</div>
+
+				<div class="mat-body-1" fxFlex>
+					<div fxFill fxLayout="column" fxLayoutAlign="center center">
+						<div>
+							<span [innerText]="r.text"></span>
+							<a [href]="r.url">more</a>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+
+	</div>
+
+	<div class="sm-section section dark-theme" fxLayout="column" fxLayoutAlign="center center">
+
+		<div class="header">
+			<div class="mat-headline">Let's get started.</div>
+			<svg class="svg-line-trans" height="5" width="200">
+				<polygon points="0 1, 200 1, 200 0, 0 0" />
+			</svg>
+		</div>
+
+		<div class="mat-title">
+			We would love the opportunity to work together.
+		</div>
+
+		<div fxLayout="row" fxLayoutAlign="center center">
+			<!-- <button mat-raised-button color="primary" (click)="dialogGetStarted()">Start a project</button> -->
+			<button mat-button class="btn-bdr" (click)="dialogGetStarted()">Start a project</button>
+			<!-- <span>or</span> -->
+			<!-- <button mat-raised-button color="primary">Make an appointment</button>		 -->
+		</div>
+
+	</div>
+
+	<!-- Blog / Published articles -->
+
+	<!-- <div class="sixth">
+
+		<mat-grid-list cols="4" rowHeight="100px">
+			<mat-grid-tile *ngFor="let tile of tiles" gutterSize="10px" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
+				<mat-grid-tile-header>header</mat-grid-tile-header>
+				{{tile.text}}
+				<mat-grid-tile-footer>footer</mat-grid-tile-footer>
+			</mat-grid-tile>
+		</mat-grid-list> 
+
+	</div> -->
+
+</div>

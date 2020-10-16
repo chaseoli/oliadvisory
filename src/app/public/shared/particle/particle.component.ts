@@ -1,6 +1,7 @@
 // IMPORTANT: Remember to set the background color of the parent element since the lines and dots are white
 
-import { Component, ViewChild, AfterViewInit, ElementRef, HostListener, style } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, HostListener} from '@angular/core';
+import { style } from '@angular/animations';
 
 interface IParticleSetup {
     noOfDots: number;
@@ -108,8 +109,8 @@ export class ParticleComponent implements AfterViewInit {
         // particle connections follow mouse pointer
         // console.log(e.pageX, e.pageY);
         // console.log(e);
-        this.mouse.x = e.layerX;
-        this.mouse.y = e.layerY;
+        this.mouse.x = (e as any).layerX;
+        this.mouse.y = (e as any).layerY;
     }
 
     center() {

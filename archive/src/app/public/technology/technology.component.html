@@ -1,0 +1,30 @@
+<div class="wrapper" fxLayout="column">
+
+	<div class="header" fxLayout="column" fxLayoutAlign="center center">
+		<div class="stage">
+			<div class="mat-display-1">
+				We <strong>build</strong> just about <strong>anything</strong> you can <strong class="text-accent">dream</strong> up.
+			</div>
+		</div>
+		<app-particle fxFlexFill></app-particle>
+		<app-bouncing-mouse [theme]="'light'"></app-bouncing-mouse>
+	</div>
+
+
+	<div class="services light-theme" fxLayout="column" fxLayoutAlign="center center">
+
+		<div class="inner">
+			<div class="mat-display-3">Technology</div>
+			<div fxLayout="row wrap">
+				<div fxFlex="33" fxFlex.sm="50" fxFlex.xs="100" *ngFor="let i of technology">
+					<div class="service">
+						<div class="title mat-title" [innerText]="i.name"></div>
+						<div class="desc mat-body-1" [innerText]="i.desc"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>

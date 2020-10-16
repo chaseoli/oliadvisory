@@ -1,0 +1,40 @@
+<div mat-dialog-content>
+
+	<div class="wrapper" fxLayout="column">
+
+		<div fxLayout="column" fxLayoutAlign="end end">
+			<button mat-icon-button (click)="onNoClick()"><mat-icon>close</mat-icon> </button>
+		</div>
+
+		<div fxLayout="column" fxLayoutAlign="center center">
+
+			<div class="team-member" [style.background-image]="'url(' + model.avatar + ')'"></div>
+
+			<div fxLayout="row" class="mat-title">
+				<span fxLayout="row" fxLayoutGap="8px">
+					<strong [innerText]="model.first"></strong>
+					<strong [innerText]="model.last"></strong>
+				</span>
+				<span *ngIf="model.cert" [innerText]="', ' + model.cert"></span>
+
+
+			</div>
+
+			<div class="mat-caption" [innerText]="model.title"></div>
+
+			<div class="meet-row" *ngIf="model.internal_calendar">
+				<button mat-raised-button color="accent" [routerLink]="model.internal_calendar" (click)="onNoClick()">Let's meet</button>
+			</div>
+
+			<div class="meet-row" *ngIf="model.external_calendar">
+				<button mat-raised-button color="accent" [routerLink]="model.external_calendar" (click)="onNoClick()">Let's meet</button>
+			</div>
+
+			<p class="mat-body-1" [innerText]='model.about'></p>
+
+
+		</div>
+
+	</div>
+
+</div>

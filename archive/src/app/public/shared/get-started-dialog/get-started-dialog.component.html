@@ -1,0 +1,96 @@
+<div mat-dialog-content>
+
+	<div class="wrapper" fxLayout="row" fxLayoutAlign="center center" [class.hide]="!recaptcha.spinner">
+		<div fxLayout="row" fxLayoutAlign="center center">
+			<div>
+				<mat-spinner color="accent"></mat-spinner>
+			</div>
+		</div>
+	</div>
+
+	<div fxLayout="column" [class.hide]="recaptcha.spinner">
+
+		<div fxLayout="column" fxLayoutAlign="end end">
+			<button mat-icon-button (click)="onNoClick()"><mat-icon>close</mat-icon> </button>
+		</div>
+
+		<form #form="ngForm" (submit)="submit(form)" novalidate>
+
+			<div fxLayout="column" fxLayoutGap="40px" fxLayoutAlign="space-between stretch">
+				<div fxLayout="column" fxLayoutAlign="center center">
+					<mat-icon svgIcon="logo" style="height: 50px; width: 50px;"></mat-icon>
+				</div>
+
+				<div class="mat-body-2" fxLayout="column" fxLayoutAlign="center center">
+					<!-- <h1 class="mat-display-1"> How can we help make your project a success? </h1> -->
+					<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+						<div fxLayout="row" fxLayoutGap="10px">
+							<mat-icon fxFlex="none" fxFlexAlign="center">phone</mat-icon> <span fxFlex="none" fxFlexAlign="center" [innerText]="siteInfo.phone | phone"></span>
+						</div>
+						<div fxLayout="row" fxLayoutGap="10px">
+							<mat-icon fxFlex="none" fxFlexAlign="center">email</mat-icon> <span fxFlex="none" fxFlexAlign="center" [innerText]="siteInfo.email"></span>
+						</div>
+					</div>
+				</div>
+
+				<div fxLayout="column" fxLayoutAlign="start stretch">
+
+					<div class="mat-title">Details about your company.</div>
+
+					<mat-form-field fxFlex>
+						<input matInput placeholder="Your Company's name?" name="company" [(ngModel)]="model.company">
+					</mat-form-field>
+
+					<mat-form-field>
+						<textarea rows="5" matInput placeholder="What are your goals and ideas?" name="info" [(ngModel)]="model.info"></textarea>
+					</mat-form-field>
+
+				</div>
+
+				<div fxLayout="column" fxLayoutAlign="start stretch">
+
+					<div class="mat-title">Getting in touch with you.</div>
+
+					<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+						<mat-form-field fxFlex>
+							<input matInput placeholder="First" name="first" [(ngModel)]="model.first" required>
+						</mat-form-field>
+
+						<mat-form-field fxFlex>
+							<input matInput placeholder="Last" name="last" [(ngModel)]="model.last" required>
+						</mat-form-field>
+					</div>
+
+					<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+						<mat-form-field fxFlex>
+							<input matInput placeholder="Phone" name="phone" [(ngModel)]="model.phone" required>
+						</mat-form-field>
+
+						<mat-form-field fxFlex>
+							<input type="email" matInput placeholder="Email" name="email" [(ngModel)]="model.email" required>
+						</mat-form-field>
+					</div>
+
+					<div class="mat-caption">
+						Your information is not shared with third-parties, see exceptions in our privacy statement.
+					</div>
+
+					<!-- <div>
+						We will contact you in 1 hour or less during normal business hours.
+					</div> -->
+
+				</div>
+
+				<span class="mat-caption text-warn" *ngIf="recaptcha.warnMsg" [innerText]="recaptcha.warnMsg"></span>
+
+				<!-- <span id="recaptcha-invisible" class="hide" #recaptcha=appInvisibleRecaptcha appInvisibleRecaptcha></span> -->
+				<span id="recaptcha-visible" #recaptcha=appVisibleRecaptcha appVisibleRecaptcha></span>
+				
+				<button [disabled]="form.invalid" color="accent" mat-raised-button type="submit" cdkFocusInitial>Submit</button>
+
+			</div>
+
+		</form>
+	</div>
+
+</div>

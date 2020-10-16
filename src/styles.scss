@@ -17,32 +17,23 @@
 // google material icons import
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-// @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-@import "~sass/font-awesome/scss/fontawesome.scss";
-@import "~sass/font-awesome/scss/fa-brands.scss";
-// @import "~sass/font-awesome/scss/fa-solid.scss";
-// @import "~sass/font-awesome/scss/fa-regular.scss";
-
-
-// <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 // used to override typography
 // https://material.angular.io/guide/typography
 // @import url('https://fonts.googleapis.com/css?family=Quicksand:500,700|Roboto:300,400,500,700');
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700");
 
 // light theme is global default
-@import "~sass/light-theme.scss";
+@import "app/sass/light-theme.scss";
 
 // to use the dark theme add ".dark-theme" class to the 
 // containing element and the stock material components 
 // placed within that class will use the dark-theme
-@import "~sass/dark-theme.scss";
+@import "app/sass/dark-theme.scss";
 
 // import helpers and typography sass
 // IMPORTANT: must be after mat-core to override typography from mat-core
-@import "~sass/helpers.scss";
-@import "~sass/typography.scss";
+@import "app/sass/helpers.scss";
+@import "app/sass/typography.scss";
 
 body {
     overflow-x: hidden;
