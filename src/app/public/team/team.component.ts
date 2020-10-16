@@ -1,7 +1,9 @@
 import {
   Component,
   HostListener,
-  OnInit
+  OnInit,
+  Inject,
+  AfterViewInit
 } from '@angular/core';
 import * as _ from 'lodash';
 import { StyleService } from '../shared/style.service';
@@ -12,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GetStartedDialogComponent } from '../shared/get-started-dialog/get-started-dialog.component';
 import { SubmitMessageDialogComponent } from '../shared/submit-message/submit-message.component';
 
-import { TeamDialogComponent } from '../team/team-dialog/team-dialog.component';
+import { TeamDialogComponent } from './team-dialog/team-dialog.component';
 import { UrlConstants } from '../../shared/constants/urls.constant';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -62,9 +64,9 @@ interface IBeliefs {
 
 @Component({
   // selector: 'app-root',
-  templateUrl: './landing.component.html',
+  templateUrl: './team.component.html',
   // encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./landing.component.scss'],
+  styleUrls: ['./team.component.scss'],
   animations: [
     trigger('focusPanel', [
       state('inactive',
@@ -226,14 +228,13 @@ interface IBeliefs {
     ])
   ]
 })
-export class LandingComponent implements OnInit {
+export class TeamComponent implements OnInit {
 
   twitter = faTwitter
   linkedIn = faLinkedinIn
   faCoffee = faCoffee;
 
   statementIdx: number;
-  title = 'landing';
   statements: IStatements[];
   siteInfo: ISiteInfo;
   team: ITeamMember[];

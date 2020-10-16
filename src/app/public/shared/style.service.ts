@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, Event, NavigationStart } from '@angular/router';
-import * as _ from 'lodash';
+import * as _ from 'lodash'
 
 export interface IPageStyles {
 

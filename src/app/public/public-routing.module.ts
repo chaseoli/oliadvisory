@@ -13,6 +13,7 @@ import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
 import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
+import { TeamComponent } from './team/team.component';
 
 const publicRoutes: Routes = [
     {
@@ -25,6 +26,7 @@ const publicRoutes: Routes = [
             { path: 'accounting', component: AccountingComponent },
             { path: 'technology', component: TechnologyComponent },
             { path: 'creative', component: CreativeComponent },
+            { path: 'team', component: TeamComponent },
             { path: 'now', component: NowComponent },
             { path: 'terms', component: TermsComponent },
             { path: 'privacy', component:  PrivacyComponent},

@@ -75,7 +75,7 @@
 
 							<!-- <button mat-button routerLink="/services">Services</button> -->
 
-							<a mat-button href="https://xlear.io/" style="text-transform: lowercase">xlear.io</a>
+							<!-- <a mat-button href="https://xlear.io/" style="text-transform: lowercase">xlear.io</a> -->
 
 							<button mat-button [matMenuTriggerFor]="servicesMenu">Services</button>
 
@@ -105,7 +105,7 @@
 
 							</mat-menu> -->
 
-							<button mat-button routerLink="/careers">Careers</button>
+							<!-- <button mat-button routerLink="/careers">Careers</button> -->
 
 							<!-- <button mat-button routerLink="/landing">Contact</button> -->
 
@@ -177,7 +177,7 @@
 						
 						<div fxLayout.lt-md="column" fxLayoutAlign.lt-md="space-around start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between start">
 	
-							<div class="section">
+							<!-- <div class="section">
 								<div class="hdr">
 									Services
 								</div>
@@ -192,7 +192,7 @@
 										<a routerLink="/creative">Creative</a>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<!-- <div class="section">
 								<div class="hdr">
 									header 2
@@ -213,12 +213,12 @@
 								<!-- <span [innerText]="siteInfo.city"></span> -->
 								<!-- <br> -->
 								
-								<span [innerText]="siteInfo.address1"></span>
+								<!-- <span [innerText]="siteInfo.address1"></span>
 								<br>
 								<span [innerText]="(siteInfo.city + ', ' + siteInfo.state + ' ' + siteInfo.zip)"></span>
 								<br>
 								<br>
-								<span [innerText]="siteInfo.phone | phone"></span>
+								<span [innerText]="siteInfo.phone | phone"></span> -->
 							</div>
 							
 						</div>
@@ -227,27 +227,27 @@
 							
 							<div class="section" fxFlexOrder.lt-md="1">
 								
-								<span [innerText]="siteInfo.name"></span>
+								<span [innerText]="siteInfo.name + ' 2020'"></span>  
 								<!-- <span>©</span>  -->
-								<span>2018</span>
+								
 								<!-- <span>All rights reserved</span> -->
 								
 								<!-- see palantir for example legal language -->
 								<br>
 								
-								<a routerLink="/terms">Terms of use</a>
-								<span>&</span>
-								<a routerLink="/privacy">Privacy and Security Statement</a>
+								<a routerLink="/terms">Terms of use </a>
+								<span> & </span>
+								<a routerLink="/privacy">Privacy and Security Statement </a>
 								
 							</div>
 							
 							<div class="section" fxFlexOrder.lt-md="0" [ngClass.gt-sm]="['text-right']">
 								<!-- order before legal language when small screen -->
 								<!-- <span>Site built by <span [innerText]="siteInfo.name"></span></span> -->
-								<span>Made with</span>
+								<!-- <span>Made with</span>
 								<mat-icon class="heart">favorite_border</mat-icon>
 								by 
-								<a [innerText]="siteInfo.name" routerLink="/"></a>
+								<a [innerText]="siteInfo.name" routerLink="/"></a> -->
 								<!-- <button mat-button class="uppercase">Learn more</button> -->
 								<!-- Create a webpage that explains our process -->
 								<!-- 

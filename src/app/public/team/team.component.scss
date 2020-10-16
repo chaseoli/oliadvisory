@@ -404,10 +404,12 @@ $landing-section-margin: 30px;
     }
 
     .team {
+        
         $shorten-section-view-height: 20vh;
 
         position: relative;
         padding: 40px;
+        padding-top: 100px;
 
         .title {
             max-width: 300px;

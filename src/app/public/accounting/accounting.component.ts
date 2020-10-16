@@ -33,15 +33,15 @@ export class AccountingComponent implements OnInit {
         desc: 'Paying bills, tracking time, processing payroll, creating invoices, inventory tracking,' +
           'cash reconciliations, periodic close process, generating financial statements'
       },
-      {
-        name: 'Tax Preparation',
-        desc: 'Tax Forms 1040 Individual, 1120 Corporate, 1065 Partnership, 1120S S-Corporation,' +
-          '1041 Estates & Trusts, 990 Exempt Organization, 709 Gift Tax, W-2s, 1099s'
-      },
-      {
-        name: 'Payroll',
-        desc: 'Tracking time, W-2s, quarterly and annual tax filings'
-      },
+      // {
+      //   name: 'Tax Preparation',
+      //   desc: 'Tax Forms 1040 Individual, 1120 Corporate, 1065 Partnership, 1120S S-Corporation,' +
+      //     '1041 Estates & Trusts, 990 Exempt Organization, 709 Gift Tax, W-2s, 1099s'
+      // },
+      // {
+      //   name: 'Payroll',
+      //   desc: 'Tracking time, W-2s, quarterly and annual tax filings'
+      // },
       {
         name: 'Forensic Accounting',
         desc: 'Support for clients that suspect that they or their business' +
@@ -69,7 +69,12 @@ export class AccountingComponent implements OnInit {
           ' the integrity of financial and accounting information, meet operational' +
           ' and profitability targets, and transmit management policies throughout' +
           ' the organization.'
-      }
+      },
+      {
+        name: 'Blockchain',
+        desc: 'We develop and design backend systems utilizing major blockchain technologies. Most notable experience includes Stellar, Ethereum, Hyperledger, and Dragonchain. We can help you understand and implement blockchain solutions that are appropriate to accelerate for your business.'
+      },
+      
     ];
 
   }
